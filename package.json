@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sabil62/Web3/issues"
   },
-  "homepage": "https://github.com/sabil62/Web3#readme"
+  "homepage": "https://github.com/sabil62/Web3#readme",
+  "dependencies": {
+    "solc": "^0.8.11"
+  }
 }
