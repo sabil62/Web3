@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sabil62/Web3#readme",
   "dependencies": {
-    "solc": "^0.8.11"
+    "nodemon": "^2.0.15",
+    "solc": "^0.4.25"
   }
 }
