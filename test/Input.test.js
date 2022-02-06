@@ -1,6 +1,6 @@
 const assert = require("assert");
 const ganache = require("ganache");
-// const Web3 = require("web3");
+const Web3 = require("web3");
 
 // const web3 = Web3(ganache.provider());
 
@@ -14,10 +14,17 @@ class Car {
   }
 }
 
+let car;
+beforeEach(() => {
+  car = new Car();
+});
+
 describe("mocha test", () => {
   it("car", () => {
-    let car = new Car();
     assert.equal(car.cars(), "cars");
+  });
+  it("bus", () => {
+    assert.equal(car.bus(), "bus");
   });
 });
 

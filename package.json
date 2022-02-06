@@ -1,5 +1,5 @@
 {
-  "name": "web3",
+  "name": "web3s",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,7 +19,8 @@
   "dependencies": {
     "ganache": "^7.0.2",
     "nodemon": "^2.0.15",
-    "solc": "^0.4.25"
+    "solc": "^0.4.25",
+    "web3": "^1.7.0"
   },
   "devDependencies": {
     "mocha": "^9.2.0"
