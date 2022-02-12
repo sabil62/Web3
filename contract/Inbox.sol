@@ -1,4 +1,5 @@
 pragma solidity >=0.4.16 <0.9.0;
+
 //installed (npm install solc@0.4.25)
 
 // contract Inbox{
@@ -15,7 +16,7 @@ pragma solidity >=0.4.16 <0.9.0;
 
 
 contract Inbox{
-    string public message;
+    string public message="hello";
 
     // constructor(string memory initialMessage) public{
     //     message = initialMessage;
