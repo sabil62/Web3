@@ -33,10 +33,18 @@ describe("web3 ganauche", () => {
 
   it("has a default message", async () => {
     //this message is from Inbox.sol
-    const message = await inbox.methods.getMessage().call();
+    const message = await inbox.methods.message().call();
     console.log("show");
     console.log(message);
+    //this down not working
     // assert.equal(message, "Hi There!");
+  });
+
+  it("can change the message", async () => {
+    await inbox.methods.setMessage("bye bye").send({ from: accounts[0] });
+    let message = await inbox.methods.getMessage().call();
+    // console.log(message);
+    assert.equal(message, "bye bye");
   });
 });
 
