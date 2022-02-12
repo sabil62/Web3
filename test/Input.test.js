@@ -4,15 +4,27 @@ const Web3 = require("web3");
 
 const web3 = new Web3(ganache.provider());
 
-beforeEach(() => {
+const { interface, bytecode } = require("../compile");
+
+let accounts;
+let inbox;
+
+beforeEach(async () => {
   //get a list of all acounts
-  web3.eth.getAccounts().then((fetchedAccounts) => {
-    console.log(fetchedAccounts);
-  });
+  accounts = await web3.eth.getAccounts();
+  inbox = new web3.eth.Contract(JSON.parse(interface))
+    .deploy({
+      data: bytecode,
+      arguments: ["Hi There!"],
+    })
+    .send({ from: accounts[0], gas: "1000000" });
 });
 
 describe("web3 ganauche", () => {
-  it("deploy contract", () => {});
+  it("deploy contract", () => {
+    // console.log(accounts);
+    console.log(inbox);
+  });
 });
 
 //just testing
