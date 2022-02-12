@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sabil62/Web3#readme",
   "dependencies": {
+    "@truffle/hdwallet-provider": "^2.0.3",
     "ganache": "^7.0.2",
     "nodemon": "^2.0.15",
     "solc": "^0.4.25",
