@@ -55,10 +55,21 @@ contract Lottery{
         return uint(keccak256(abi.encodePacked(block.difficulty,block.timestamp,players)));
     }
 
-    function pickWinner() public{
+    function pickWinner() public restrictExceptManager{
         uint index= random() % players.length;
         //no payable in remix. players[index].transfer(address(this).balance);
         payable(players[index]).transfer(address(this).balance);
         players = new address[](0);
+    }
+
+    modifier restrictExceptManager(){
+        require(msg.sender == manager);
+        //this(_;) is all others code
+        _;
+    }
+
+    //manager
+    function getPlayers() public view returns (address[] memory){
+        return players;
     }
 }
