@@ -24,16 +24,32 @@ describe("describe lottery contract", () => {
 
   //enter() method(function) of lottery.sol(deployed contract)
   it("enter function(using just one account(ether account))", async () => {
+    //first player enter (this is us)
     await lottery.methods.enter().send({
       from: accounts[0],
       value: web3.utils.toWei("0.02", "ether"),
     });
 
+    //second player enter with different account
+    await lottery.methods.enter().send({
+      from: accounts[1],
+      value: web3.utils.toWei("0.014", "ether"),
+    });
+
+    //third player enter
+    await lottery.methods.enter().send({
+      from: accounts[2],
+      value: web3.utils.toWei("0.017", "ether"),
+    });
+
     const players = await lottery.methods
       .getPlayers()
       .call({ from: accounts[0] });
-  });
 
-  assert.equal(accounts[0], players[0]);
-  assert.equal(1, players.length);
+    assert.equal(accounts[0], players[0]);
+    assert.equal(accounts[1], players[1]);
+    assert.equal(accounts[2], players[1]);
+
+    assert.equal(3, players.length);
+  });
 });
