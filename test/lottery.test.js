@@ -1,8 +1,8 @@
 const assert = require("assert");
 const Web3 = require("web3");
-const ganauche = require("ganache-provider");
+const ganauche = require("ganache");
 
-const web3 = Web3(ganauche.provider());
+const web3 = new Web3(ganauche.provider());
 
 const { interface, bytecode } = require("../compile");
 
@@ -48,8 +48,37 @@ describe("describe lottery contract", () => {
 
     assert.equal(accounts[0], players[0]);
     assert.equal(accounts[1], players[1]);
-    assert.equal(accounts[2], players[1]);
+    assert.equal(accounts[2], players[2]);
 
     assert.equal(3, players.length);
+  });
+
+  //makes sure there is error
+  it("requires a minimum amount of error", async () => {
+    try {
+      await lottery.methods.enter().send({
+        from: accounts[0],
+        value: 0, //nothing or 0 wei value (this should be atleast 0.1 ether to work )
+      });
+      //if the upper statement doesnot give error this will say it is false
+      //or if up line doesnot give error then the test fails
+      //if we comment this then also it will work provided that the upper one is error
+      //else we need this
+      assert(false);
+    } catch (err) {
+      assert(err);
+    }
+  });
+
+  //check or test pickwinner function
+  it("some other than mangaer accesses pickwinner", async () => {
+    try {
+      await lottery.methods.pickWinner().call({
+        from: accounts[1], //our manager has accounts[0] (so this is not our manager and hence should give error)
+      });
+      assert(false);
+    } catch (err) {
+      assert(err);
+    }
   });
 });
